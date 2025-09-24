@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getProducts } from '../services/api';
-import { Button, Card, CardMedia, Grid } from '@mui/material';
+import { Button, Card, CardMedia} from '@mui/material';
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import CardActionArea from '@mui/material/CardActionArea';
@@ -10,6 +10,7 @@ import { useCart } from '../context/CartContext'
 
 const Product = () => {
     const [products, setProducts] = useState([])
+    
     const {addToCart} = useCart();
 
     
@@ -21,7 +22,6 @@ const Product = () => {
         const data = await getProducts();
         setProducts(data)
     }
-
 
     return (
         <>
@@ -63,7 +63,7 @@ const Product = () => {
                                     padding: 2,
                                     marginTop: 'auto'
                                 }}>
-                                    <Button variant="contained" onClick={addToCart} sx={{ width: '48%' }} >
+                                    <Button variant="contained" onClick={()=> addToCart(product)} sx={{ width: '48%' }} >
                                         Add
                                     </Button>
                                     

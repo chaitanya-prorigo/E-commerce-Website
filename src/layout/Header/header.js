@@ -14,8 +14,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
-import { getProductsbyId } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -171,7 +171,6 @@ export default function Header() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onChange={getProductsbyId}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

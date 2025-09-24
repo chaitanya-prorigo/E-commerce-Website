@@ -1,4 +1,4 @@
-// src/context/CartContext.js
+
 import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
@@ -7,6 +7,10 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
+
+    const removeItem = (itemId) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
 
     const addToCart = (product) => {
         setCartItems(prevItems => {
@@ -25,7 +29,8 @@ export const CartProvider = ({ children }) => {
 
     const value = {
         cartItems,
-        addToCart
+        addToCart,
+        removeItem
     };
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
