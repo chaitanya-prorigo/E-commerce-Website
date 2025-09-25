@@ -16,6 +16,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useCart } from '../../context/CartContext';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,6 +68,7 @@ export default function Header() {
 
   const navigate = useNavigate();
 
+  const { cartItems } = useCart();
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -178,11 +180,10 @@ export default function Header() {
             
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
               color="inherit"
               onClick={()=> navigate('/cart')}
             >
-              <Badge  color="error">
+              <Badge badgeContent={cartItems.length}  color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
