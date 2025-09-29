@@ -10,8 +10,8 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(initialState);
 
     const removeItem = (itemId) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
-  };
+        setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+    };
 
     const addToCart = (product) => {
         setCartItems(prevItems => {
@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
                         : item
                 );
             } else {
-                return initialState;
+                return prevItems;
             }
         });
     };

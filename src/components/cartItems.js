@@ -15,7 +15,6 @@ const CartItems = () => {
   const total = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity, 0
   )
-  
 
   return (
     <>
@@ -30,13 +29,13 @@ const CartItems = () => {
               <Box key={item.id} sx={{ display: 'flex', justifyContent: 'space-between', padding: '10px', borderBottom: '1px solid #ccc' }}>
                 <Typography variant="body1">{item.title}</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', ml: 'auto' }}>
-                <Typography variant="body1" sx={{ mr: 2 }}>${item.price} x {item.quantity}</Typography>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit" onClick={()=> removeItem(item.id)}>
-                  <CloseIcon />
-                </IconButton>
+                  <Typography variant="body1" sx={{ mr: 2 }}>${item.price} x {item.quantity}</Typography>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit" onClick={() => removeItem(item.id)}>
+                    <CloseIcon />
+                  </IconButton>
                 </Box>
               </Box>
             ))}

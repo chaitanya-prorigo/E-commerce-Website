@@ -15,8 +15,8 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
+import { useSearch } from '../../context/SearchContext';
 
 
 const Search = styled('div')(({ theme }) => ({
@@ -62,6 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { setSearchTerm } = useSearch();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -69,6 +70,10 @@ export default function Header() {
   const navigate = useNavigate();
 
   const { cartItems } = useCart();
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value)
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -103,10 +108,10 @@ export default function Header() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-      
+
     >
-      
-      <MenuItem onClick={()=> navigate('/')}>Logout</MenuItem>
+
+      <MenuItem onClick={() => navigate('/')}>Logout</MenuItem>
     </Menu>
   );
 
@@ -127,8 +132,8 @@ export default function Header() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      
-      
+
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -154,7 +159,7 @@ export default function Header() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={()=>navigate('/product')}
+            onClick={() => navigate('/product')}
           >
             <HomeIcon />
           </IconButton>
@@ -173,17 +178,18 @@ export default function Header() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={handleSearch}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            
+
             <IconButton
               size="large"
               color="inherit"
-              onClick={()=> navigate('/cart')}
+              onClick={() => navigate('/cart')}
             >
-              <Badge badgeContent={cartItems.length}  color="error">
+              <Badge badgeContent={cartItems.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

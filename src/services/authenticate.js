@@ -1,5 +1,3 @@
-export const credentials = { username: 'john_doe', password: 'pass123' };
-
 export const handleLogin = async (credentials) => {
     const response = await fetch('https://fakestoreapi.com/auth/login', {
         method: 'POST',
@@ -11,9 +9,15 @@ export const handleLogin = async (credentials) => {
 
     if (contentType && contentType.includes('application/json')) {
         const data = await response.json();
+        console.log(data)
+        
         if (!response.ok) {
             // e.g., wrong username or password, but still JSON response
             throw new Error(data.message || 'Login failed');
+        }
+        if(data.token){
+            localStorage.setItem("token", data.token)
+            localStorage.setItem("username", credentials.username)
         }
         return data;
     } else {
