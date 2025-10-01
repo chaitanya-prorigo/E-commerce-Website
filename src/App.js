@@ -1,7 +1,7 @@
-import Login from './components/login';
+import Login from './pages/login';
 import './App.css';
-import Product from './components/product';
-import CartItems from './components/cartItems';
+import Product from './pages/product';
+import CartItems from './pages/cartItems';
 import { CartProvider } from './context/CartContext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SearchProvider } from './context/SearchContext';
